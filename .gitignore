@@ -1,0 +1,33 @@
+# env
+.env
+.env.local
+.env.development.local
+.env.*.local
+
+# build output
+/build
+/dist
+/out
+
+# file dependencies
+/node_modules
+
+# file logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# file sistem operasi
+.DS_Store
+thumbs.db
+
+# file editor
+*.swp
+*.swo
+*.swn
+.vscode/
+.idea/
+*.suo
+*.ntvs_analysis.dat
+*.ntvs_testresults.dat
+
