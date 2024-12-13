@@ -34,8 +34,8 @@ exports.login = async (req, res) => {
   if (!error.isEmpty()) {
     return res.status(400).json({ error: error.array() });
   }
-
   const { email, password } = req.body;
+  
   try {
     const user = await User.findOne({ email });
     if (!user) {
@@ -44,7 +44,7 @@ exports.login = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Password invalid" });
     }
     console.log(process.env.JWT_SECRET);
 
@@ -57,6 +57,8 @@ exports.login = async (req, res) => {
       token: token,
     });
   } catch (error) {
+    console.log("error in login", error);
+    console.error("error in login", error);
     res.status(500).json({ error: error.message });
   }
 

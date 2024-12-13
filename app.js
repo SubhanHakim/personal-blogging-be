@@ -52,14 +52,22 @@ app.use((req, res, next) => {
   next();
 });
 
+console.log("Routes loaded successfully");
+
 
 // call Routes
 require("./src/routes/auth.routes")(app);
+require("./src/routes/story.routes")(app);
 
+// error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ error: "Something went wrong!" });
+});
 
 // for testing only
 app.get("/", (req, res) => {
-    res.send("Welcome to the server");
-})
+  res.send("Welcome to the server");
+});
 
 module.exports = app;
